@@ -1,0 +1,5 @@
+services:
+  my_service:
+    image: rtexa/ml-group-37-tech-challenge-01:latest
+    ports:
+      - 9123:8000
