@@ -1,0 +1,17 @@
+name: Trigger Container Update
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  trigger_restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger container update
+        run: |
+          curl -X POST \
+            -H "X-Hub-Signature-256: sha256=$(echo -n '${{ github.event.repository.full_name }}' | openssl dgst -sha256 -hmac '${{ secrets.WEBHOOK_SECRET }}' | awk '{print $2}')" \
+            -d '{"ref":"${{ github.ref }}"}' \
+            "http://your-omv-ip:9124/webhook/update?container_name=your_container"

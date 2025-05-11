@@ -1,0 +1,11 @@
+services:
+  webhook:
+    build: .
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/dev-disk-by-uuid-416512f6-a304-4c73-b7ff-878be4c36a86/Compose/ml-group-37-tech-challenge-01:/path/to/your/docker-compose.yml
+    environment:
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET}
+    ports:
+      - "9124:8001"
+    restart: unless-stopped
