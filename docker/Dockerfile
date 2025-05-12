@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set working directory
-WORKDIR /tech_challenge
+WORKDIR ../tech_challenge
 
 # Copy requirements first to leverage Docker cache
 COPY ./requirements.txt .
