@@ -36,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./docker/
+          context: ./tech_challenge/
           file: ./docker/Dockerfile
           push: true
           tags: ${{ vars.REGISTRY }}/${{ vars.IMAGE_NAME }}:latest
