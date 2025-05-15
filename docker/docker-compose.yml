@@ -2,6 +2,8 @@ services:
   my_service:
     image: rtexa/ml-group-37-tech-challenge-01:latest
     restart: unless-stopped
+    volumes:
+      - CHANGE_TO_COMPOSE_DATA_PATH/ml-group-37-tech-challenge-01/data:/data
     ports:
       - 9123:8000
 
