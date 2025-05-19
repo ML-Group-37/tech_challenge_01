@@ -34,7 +34,7 @@ def gerar_endpoint(nome: str, schema: Type[BaseModel]):
         try:
             df = get_dados_aba(nome)
             ic(f"Dados de {nome} carregados com sucesso.")
-            return df.to_dict(orient="records")
+            return [schema(**row) for row in df.to_dict(orient="records")]
         except RuntimeError as e:
             ic(f"Erro em /{nome}: {e}")
             raise HTTPException(status_code=503, detail=str(e))

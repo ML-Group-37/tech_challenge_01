@@ -11,11 +11,11 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # URLs das abas da Embrapa
 URLS = {
-    "producao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_01",
-    "processamento": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_02",
-    "comercializacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_03",
-    "importacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_04",
-    "exportacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_05",
+    "producao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_02",
+    "processamento": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_03",
+    "comercializacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_04",
+    "importacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_05",
+    "exportacao": "http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_06",
 }
 
 def fetch_html_from_url(url: str) -> str:
@@ -35,13 +35,17 @@ def parse_first_table(html: str) -> pd.DataFrame:
     ignorando linhas inválidas.
     """
     soup = BeautifulSoup(html, "html.parser")
-    tables = pd.read_html(str(soup))
-    df = tables[0]
+    html_table = soup.find("table", {"class": "tb_base tb_dados"})
     
-    df = df.dropna(how="all")
-    df = df[df.iloc[:, 0].notna()]
-    df = df.reset_index(drop=True)
+    rows = html_table.find_all("tr")
+    data = []
 
+    for row in rows:
+        cells = row.find_all(["th", "td"])
+        cells_text = [cell.get_text(strip=True) for cell in cells]
+        data.append(cells_text)
+
+    df = pd.DataFrame(data[1:], columns=data[0])
     ic("Tabela extraída e limpa com sucesso.")
     return df
 
