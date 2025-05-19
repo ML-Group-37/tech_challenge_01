@@ -1,48 +1,66 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 from typing import Optional
 
+def parse_quantidade(value: str | int | None) -> int | None:
+    if isinstance(value, str):
+        if value.strip() == "-":
+            return None
+        return int(value.replace(".", ""))
+    return value
+
 class ProducaoSchema(BaseModel):
-    Ano: int
-    Região: str
-    Uva: str
-    Quantidade_kg: Optional[float]
+    Produto: str
+    Quantidade_L: Optional[int] = Field(..., alias="Quantidade (L.)")
+
+    @validator("Quantidade_L", pre=True)
+    def validar_quantidade(cls, value):
+        return parse_quantidade(value)
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True 
 
 class ProcessamentoSchema(BaseModel):
-    Ano: int
-    Tipo_Uva: str
-    Volume_Litros: Optional[float]
+    Cultivar: str
+    Quantidade_Kg: Optional[int] = Field(..., alias="Quantidade (Kg)")
+
+    @validator("Quantidade_Kg", pre=True)
+    def validar_quantidade(cls, value):
+        return parse_quantidade(value)
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True
 
 class ComercializacaoSchema(BaseModel):
-    Ano: int
     Produto: str
-    Quantidade: Optional[float]
-    Unidade: Optional[str]
+    Quantidade_L: Optional[int] = Field(..., alias="Quantidade (L.)")
+
+    @validator("Quantidade_L", pre=True)
+    def validar_quantidade(cls, value):
+        return parse_quantidade(value)
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True
 
 class ImportacaoSchema(BaseModel):
-    Ano: int
-    País_Origem: str
-    Produto: str
-    Quantidade_Litros: Optional[float]
-    Valor_USD: Optional[float]
+    Países: str
+    Quantidade_Kg: Optional[int] = Field(..., alias="Quantidade (Kg)")
+    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)") 
+
+    @validator("Quantidade_Kg", "Valor_USD", pre=True)
+    def validar_quantidade(cls, value):
+        return parse_quantidade(value)
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True
 
 class ExportacaoSchema(BaseModel):
-    Ano: int
-    País_Destino: str
-    Produto: str
-    Quantidade_Litros: Optional[float]
-    Valor_USD: Optional[float]
+    Países: str
+    Quantidade_Kg: Optional[int] = Field(..., alias="Quantidade (Kg)")
+    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)") 
+
+    @validator("Quantidade_Kg", "Valor_USD", pre=True)
+    def validar_quantidade(cls, value):
+        return parse_quantidade(value)
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True
