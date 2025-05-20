@@ -1,12 +1,16 @@
 from typing import List, Optional
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from icecream import ic
 
-from tech_challenge import scraper
-from tech_challenge.schemas import ProcessamentoSchema, ProcessamentoSubTables
+from tech_challenge.schemas.api_schemas import ProcessamentoSchema
+from tech_challenge.schemas.sub_tables import ProcessamentoSubTables
+from tech_challenge.services import scraper
+from tech_challenge.services.auth import verify_token
 
 router = APIRouter()
+security = HTTPBearer()
 
 
 @router.get(
@@ -20,7 +24,11 @@ router = APIRouter()
 def get_processamento(
     sub_table: Optional[ProcessamentoSubTables],
     year: Optional[int] = None,
+    credentials: HTTPAuthorizationCredentials = Depends(security),
 ):
+    token = credentials.credentials
+    verify_token(token)
+
     try:
         if year and (year < 1970 or year > 2024):
             raise HTTPException(

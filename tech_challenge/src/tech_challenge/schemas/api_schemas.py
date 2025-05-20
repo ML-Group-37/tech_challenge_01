@@ -1,9 +1,8 @@
-from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel, Field, validator
 
-from tech_challenge.utils import parse_quantity
+from tech_challenge.utils.common import parse_quantity
 
 
 class ProducaoSchema(BaseModel):
@@ -16,6 +15,7 @@ class ProducaoSchema(BaseModel):
 
     class Config:
         validate_by_name = True
+        from_attributes = True
 
 
 class ProcessamentoSchema(BaseModel):
@@ -28,6 +28,7 @@ class ProcessamentoSchema(BaseModel):
 
     class Config:
         validate_by_name = True
+        from_attributes = True
 
 
 class ComercializacaoSchema(BaseModel):
@@ -40,6 +41,7 @@ class ComercializacaoSchema(BaseModel):
 
     class Config:
         validate_by_name = True
+        from_attributes = True
 
 
 class ImportacaoSchema(BaseModel):
@@ -53,6 +55,7 @@ class ImportacaoSchema(BaseModel):
 
     class Config:
         validate_by_name = True
+        from_attributes = True
 
 
 class ExportacaoSchema(BaseModel):
@@ -66,26 +69,9 @@ class ExportacaoSchema(BaseModel):
 
     class Config:
         validate_by_name = True
+        from_attributes = True
 
 
-# --- Enum para sub-tabelas --- #
-class ProcessamentoSubTables(str, Enum):
-    sub_table1 = "Viníferas"
-    sub_table2 = "Americanas e híbridas"
-    sub_table3 = "Uvas de mesa"
-    sub_table4 = "Sem classificação"
-
-
-class ImportacaoSubTables(str, Enum):
-    sub_table1 = "Vinhos de mesa"
-    sub_table2 = "Espumantes"
-    sub_table3 = "Uvas frescas"
-    sub_table4 = "Uvas passas"
-    sub_table5 = "Suco de uva"
-
-
-class ExportacaoSubTables(str, Enum):
-    sub_table1 = "Vinhos de mesa"
-    sub_table2 = "Espumantes"
-    sub_table3 = "Uvas frescas"
-    sub_table4 = "Suco de uva"
+class RegisterSchema(BaseModel):
+    username: str
+    password: str

@@ -6,8 +6,10 @@ from icecream import ic
 from tech_challenge.routes.comercializacao import router as comercializacao_router
 from tech_challenge.routes.exportacao import router as exportacao_router
 from tech_challenge.routes.importacao import router as importacao_router
+from tech_challenge.routes.login import router as login_router
 from tech_challenge.routes.processamento import router as processamento_router
 from tech_challenge.routes.producao import router as producao_router
+from tech_challenge.routes.register import router as register_router
 
 app = FastAPI(
     title="API Vitivinicultura Embrapa",
@@ -16,11 +18,14 @@ app = FastAPI(
 )
 
 # Registro das rotas
+app.include_router(register_router)
+app.include_router(login_router)
 app.include_router(producao_router)
 app.include_router(processamento_router)
 app.include_router(comercializacao_router)
 app.include_router(importacao_router)
 app.include_router(exportacao_router)
+
 
 ic("✅ API Vitivinicultura Embrapa está no ar!")
 
