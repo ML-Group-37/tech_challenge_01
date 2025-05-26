@@ -1,18 +1,34 @@
-from fastapi import FastAPI
 from datetime import datetime
+
+from fastapi import FastAPI
 from icecream import ic
-from tech_challenge.routes.data_routes import router as dados_router
+
+from tech_challenge.routes.comercializacao import router as comercializacao_router
+from tech_challenge.routes.exportacao import router as exportacao_router
+from tech_challenge.routes.importacao import router as importacao_router
+from tech_challenge.routes.login import router as login_router
+from tech_challenge.routes.processamento import router as processamento_router
+from tech_challenge.routes.producao import router as producao_router
+from tech_challenge.routes.register import router as register_router
 
 app = FastAPI(
     title="API Vitivinicultura Embrapa",
     description="Fornece acesso público aos dados de vitivinicultura da Embrapa.",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Registro das rotas
-app.include_router(dados_router)
+app.include_router(register_router)
+app.include_router(login_router)
+app.include_router(producao_router)
+app.include_router(processamento_router)
+app.include_router(comercializacao_router)
+app.include_router(importacao_router)
+app.include_router(exportacao_router)
+
 
 ic("✅ API Vitivinicultura Embrapa está no ar!")
+
 
 @app.get("/")
 def read_root():
@@ -30,14 +46,8 @@ def read_root():
             "/processamento": "Dados de processamento de uva",
             "/comercializacao": "Comercialização de produtos vitivinícolas",
             "/importacao": "Importações de vinhos e derivados",
-            "/exportacao": "Exportações do setor vitivinícola"
+            "/exportacao": "Exportações do setor vitivinícola",
         },
         "github_repo": "https://github.com/ML-Group-37/tech_challenge_01",
-        "mantenedores": [
-            "Antônio",
-            "Iury",
-            "Pedro",
-            "Robson",
-            "Thiago"
-        ]
+        "mantenedores": ["Antônio", "Iury", "Pedro", "Robson", "Thiago"],
     }

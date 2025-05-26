@@ -1,12 +1,9 @@
-from pydantic import BaseModel, Field, validator
 from typing import Optional
 
-def parse_quantidade(value: str | int | None) -> int | None:
-    if isinstance(value, str):
-        if value.strip() == "-":
-            return None
-        return int(value.replace(".", ""))
-    return value
+from pydantic import BaseModel, Field, validator
+
+from tech_challenge.utils.common import parse_quantity
+
 
 class ProducaoSchema(BaseModel):
     Produto: str
@@ -14,10 +11,12 @@ class ProducaoSchema(BaseModel):
 
     @validator("Quantidade_L", pre=True)
     def validar_quantidade(cls, value):
-        return parse_quantidade(value)
+        return parse_quantity(value)
 
     class Config:
-        allow_population_by_field_name = True 
+        validate_by_name = True
+        from_attributes = True
+
 
 class ProcessamentoSchema(BaseModel):
     Cultivar: str
@@ -25,10 +24,12 @@ class ProcessamentoSchema(BaseModel):
 
     @validator("Quantidade_Kg", pre=True)
     def validar_quantidade(cls, value):
-        return parse_quantidade(value)
+        return parse_quantity(value)
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
+        from_attributes = True
+
 
 class ComercializacaoSchema(BaseModel):
     Produto: str
@@ -36,31 +37,41 @@ class ComercializacaoSchema(BaseModel):
 
     @validator("Quantidade_L", pre=True)
     def validar_quantidade(cls, value):
-        return parse_quantidade(value)
+        return parse_quantity(value)
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
+        from_attributes = True
+
 
 class ImportacaoSchema(BaseModel):
     Países: str
     Quantidade_Kg: Optional[int] = Field(..., alias="Quantidade (Kg)")
-    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)") 
+    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)")
 
     @validator("Quantidade_Kg", "Valor_USD", pre=True)
     def validar_quantidade(cls, value):
-        return parse_quantidade(value)
+        return parse_quantity(value)
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
+        from_attributes = True
+
 
 class ExportacaoSchema(BaseModel):
     Países: str
     Quantidade_Kg: Optional[int] = Field(..., alias="Quantidade (Kg)")
-    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)") 
+    Valor_USD: Optional[int] = Field(..., alias="Valor (US$)")
 
     @validator("Quantidade_Kg", "Valor_USD", pre=True)
     def validar_quantidade(cls, value):
-        return parse_quantidade(value)
+        return parse_quantity(value)
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
+        from_attributes = True
+
+
+class RegisterSchema(BaseModel):
+    username: str
+    password: str
