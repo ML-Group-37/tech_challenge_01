@@ -59,6 +59,7 @@ Todos os endpoints contam com suporte a **fallback inteligente**, permitindo o u
 4. Rode o servidor local:
    ```bash
     $env:PYTHONPATH="tech_challenge/src"; uvicorn tech_challenge.main:app --reload
+    export PYTHONPATH=tech_challenge/src && uvicorn tech_challenge.main:app --reload (MacOS)
 
 5. Acesse a documentação interativa (Swagger):
    ```bash
