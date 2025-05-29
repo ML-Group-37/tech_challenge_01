@@ -1,4 +1,6 @@
-def parse_quantity(value: str | int | None) -> int | None:
+import math
+
+def parse_quantity(value: str | int | float | None) -> int | None:
     """
     Converte um valor que representa quantidade para um inteiro, tratando casos especiais.
 
@@ -9,8 +11,21 @@ def parse_quantity(value: str | int | None) -> int | None:
     Returns:
         int | None: Valor convertido para inteiro, ou None se o valor for "-" ou None.
     """
-    if isinstance(value, str):
-        if value.strip() == "-":
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)):
+        if isinstance(value, float) and math.isnan(value):
             return None
-        return int(value.replace(".", ""))
-    return value
+        return int(value)
+
+    if isinstance(value, str):
+        value = value.strip()
+        if value in ["-", "", "nan", "NaN"]:
+            return None
+        try:
+            return int(value.replace(".", "").replace(",", ""))
+        except ValueError:
+            return None
+
+    return None
