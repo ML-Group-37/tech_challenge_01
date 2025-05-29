@@ -70,7 +70,8 @@ tech_challenge_01/
 │   │       ├── main.py                     
 │   │       └── db_bases.py
 │   │
-│   └── tests/                             
+│   └── tests/ 
+│       └── test_main.py
 │
 └── requirements.txt
 ```
@@ -168,6 +169,33 @@ A documentação da API é gerada automaticamente com Swagger e está disponíve
 5. Acesse a documentação interativa (Swagger):
    ```bash
     http://127.0.0.1:8000/docs
+
+
+## ✅ Testes Automatizados
+
+Este projeto utiliza **pytest** e **pytest-html** para garantir a qualidade dos endpoints da API.
+
+Os testes cobrem:
+
+- ✅ Cadastro e login de usuários
+- ✅ Autenticação JWT e acesso autorizado aos endpoints
+- ✅ Validação da resposta dos endpoints (`/producao`, `/processamento`, `/comercializacao`, `/importacao`, `/exportacao`)
+- ✅ Verificação de status HTTP e formato dos dados (listas JSON)
+
+
+### ⚙️ Requisitos para executar os testes
+
+> Para que os testes funcionem corretamente, é necessário que a **API esteja rodando**.
+
+### 📢 Recomendação
+
+Abra **dois terminais**:
+
+- **Terminal 1**: para rodar a API
+- **Terminal 2**: para rodar os testes
+
+   ```bash
+    pytest tech_challenge/tests/ --html=testes_vitivinicultura.html --self-contained-html
 
 ## 🚀 Deploy
 
