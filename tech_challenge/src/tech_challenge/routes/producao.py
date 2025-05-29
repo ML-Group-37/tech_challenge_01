@@ -20,10 +20,18 @@ security = HTTPBearer()
     "Utiliza fallback para CSV local em caso de falha.",
     tags=["Dados"],
 )
-def get_producao(
-    year: Optional[int] = None,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-):
+def get_producao(year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """
+    Recupera dados de produção para um ano especificado.
+    Args:
+        year (Optional[int], opcional): O ano para o qual os dados de produção serão recuperados. Deve estar entre 1970 e 2024. Padrão é None.
+        credentials (HTTPAuthorizationCredentials): Credenciais HTTP para verificação do token.
+    Returns:
+        List[ProducaoSchema]: Lista de registros de dados de produção correspondentes ao ano especificado.
+    Raises:
+        HTTPException: Se o ano não estiver no intervalo válido (1970-2024).
+        HTTPException: Se ocorrer um erro de execução ao recuperar os dados de produção.
+    """
     token = credentials.credentials
     verify_token(token)
 

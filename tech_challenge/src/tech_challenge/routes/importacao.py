@@ -21,11 +21,21 @@ security = HTTPBearer()
     "Utiliza fallback para CSV local em caso de falha.",
     tags=["Dados"],
 )
-def get_importacao(
-    sub_table: Optional[ImportacaoSubTables],
-    year: Optional[int] = None,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-):
+def get_importacao(sub_table: Optional[ImportacaoSubTables], year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """
+    Busca dados de importação para uma sub-tabela e ano especificados, após verificar as credenciais do usuário.
+    Args:
+        sub_table (Optional[ImportacaoSubTables]): Sub-tabela da qual buscar os dados de importação. Deve ser um membro válido de ImportacaoSubTables.
+        year (Optional[int], opcional): Ano para o qual buscar os dados. Deve estar entre 1970 e 2024, inclusive. Padrão é None.
+        credentials (HTTPAuthorizationCredentials): Credenciais HTTP de autorização, fornecidas automaticamente por injeção de dependência.
+    Raises:
+        HTTPException: Se o ano estiver fora do intervalo válido.
+        HTTPException: Se o nome da sub-tabela for inválido.
+        HTTPException: Se ocorrer um erro de execução durante a obtenção dos dados.
+    Returns:
+        List[ImportacaoSchema]: Lista de registros de dados de importação, cada um representado como um objeto ImportacaoSchema.
+    """
+    
     token = credentials.credentials
     verify_token(token)
 

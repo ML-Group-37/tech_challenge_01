@@ -24,8 +24,21 @@ security = HTTPBearer()
 def get_processamento(
     sub_table: Optional[ProcessamentoSubTables],
     year: Optional[int] = None,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
+    """
+    Recupera dados de processamento para uma sub-tabela e ano especificados.
+    Args:
+        sub_table (Optional[ProcessamentoSubTables]): A sub-tabela da qual obter os dados. Deve ser um membro válido de ProcessamentoSubTables.
+        year (Optional[int], opcional): O ano para o qual obter os dados. Deve estar entre 1970 e 2024, inclusive. Padrão é None.
+        credentials (HTTPAuthorizationCredentials): Credenciais de autorização extraídas da requisição.
+    Raises:
+        HTTPException: Se o ano não estiver dentro do intervalo válido.
+        HTTPException: Se o nome da sub-tabela for inválido.
+        HTTPException: Se ocorrer um erro de execução durante a obtenção dos dados.
+    Returns:
+        List[ProcessamentoSchema]: Uma lista de registros de dados de processamento que correspondem aos critérios especificados.
+    """
     token = credentials.credentials
     verify_token(token)
 

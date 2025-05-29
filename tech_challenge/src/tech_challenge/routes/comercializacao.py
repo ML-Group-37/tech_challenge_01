@@ -20,10 +20,19 @@ security = HTTPBearer()
     "Utiliza fallback para CSV local em caso de falha.",
     tags=["Dados"],
 )
-def get_comercializacao(
-    year: Optional[int] = None,
-    credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
-):
+def get_comercializacao(year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
+    """
+    Recupera dados de comercialização para um determinado ano.
+    Args:
+        year (Optional[int], opcional): Ano para o qual os dados de comercialização serão recuperados. Deve estar entre 1970 e 2024. Padrão é None.
+        credentials (HTTPAuthorizationCredentials): Credenciais do token Bearer para autenticação, fornecidas automaticamente por injeção de dependência.
+    Raises:
+        HTTPException: Se o ano não estiver no intervalo válido (1970-2024), retorna 400 Bad Request.
+        HTTPException: Se ocorrer um erro de execução durante a recuperação dos dados, retorna 503 Service Unavailable.
+    Returns:
+        List[ComercializacaoSchema]: Lista de entradas de dados de comercialização para o ano especificado.
+    """
+
     token = credentials.credentials
     verify_token(token)
 

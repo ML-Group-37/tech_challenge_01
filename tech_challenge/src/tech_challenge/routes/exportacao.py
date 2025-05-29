@@ -21,11 +21,18 @@ security = HTTPBearer()
     "Utiliza fallback para CSV local em caso de falha.",
     tags=["Dados"],
 )
-def get_exportacao(
-    sub_table: Optional[ExportacaoSubTables],
-    year: Optional[int] = None,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-):
+def get_exportacao(sub_table: Optional[ExportacaoSubTables], year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """
+    Recupera dados de exportação para uma sub-tabela e ano especificados.
+    Args:
+        sub_table (Optional[ExportacaoSubTables]): A sub-tabela da qual obter os dados de exportação. Deve ser um membro válido de ExportacaoSubTables.
+        year (Optional[int], optional): O ano para o qual obter os dados de exportação. Deve estar entre 1970 e 2024, inclusive. Padrão é None.
+        credentials (HTTPAuthorizationCredentials): As credenciais HTTP de autorização para verificação do token.
+    Returns:
+        List[ExportacaoSchema]: Uma lista de registros de dados de exportação que correspondem aos critérios especificados.
+    Raises:
+        HTTPException: Se o ano estiver fora do intervalo permitido, a sub-tabela for inválida ou ocorrer um erro de execução durante a obtenção dos dados.
+    """
     token = credentials.credentials
     verify_token(token)
 
