@@ -4,7 +4,7 @@
 
 Esta API fornece acesso público aos dados de vitivinicultura brasileira, extraídos diretamente do site da Embrapa. Os dados abrangem produção, processamento, comercialização, importação e exportação de uvas, vinhos e derivados.
 
-Todos os endpoints contam com suporte a **fallback inteligente**, permitindo o uso de backups locais (`.csv`) quando o site da Embrapa estiver fora do ar. Também é possível forçar uma nova coleta diretamente da web com o parâmetro `force=true`.
+Todos os endpoints contam com suporte a **fallback inteligente**, permitindo o uso de backups locais (`db`) quando o site da Embrapa estiver fora do ar. Também é possível forçar uma nova coleta diretamente da web com o parâmetro `force=true`.
 
 ---
 

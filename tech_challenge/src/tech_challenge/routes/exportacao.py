@@ -18,7 +18,7 @@ security = HTTPBearer()
     response_model=List[ExportacaoSchema],
     summary="Dados de exportação",
     description="Retorna os dados da aba Exportação da Embrapa. "
-    "Utiliza fallback para CSV local em caso de falha.",
+    "Utiliza fallback para db local em caso de falha.",
     tags=["Dados"],
 )
 def get_exportacao(sub_table: Optional[ExportacaoSubTables], year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):

@@ -12,7 +12,7 @@ def get_producao_data(year: int = None, force: bool = False) -> pd.DataFrame:
 
     Args:
         year (int, optional): Ano dos dados a serem obtidos. Se None, obtém dados gerais.
-        force (bool, optional): Se True, força o scraping do site, ignorando o CSV local.
+        force (bool, optional): Se True, força o scraping do site, ignorando o db local.
 
     Returns:
         pd.DataFrame: DataFrame contendo os dados de produção.
@@ -31,7 +31,7 @@ def get_processamento_data(
     Args:
         sub_table (str, optional): Nome da sub-tabela para filtrar os dados.
         year (int, optional): Ano dos dados a serem obtidos.
-        force (bool, optional): Se True, força o scraping do site, ignorando o CSV local.
+        force (bool, optional): Se True, força o scraping do site, ignorando o db local.
 
     Returns:
         pd.DataFrame: DataFrame contendo os dados de processamento.
@@ -49,7 +49,7 @@ def get_comercializacao_data(year: int = None, force: bool = False) -> pd.DataFr
 
     Args:
         year (int, optional): Ano dos dados a serem obtidos.
-        force (bool, optional): Se True, força o scraping do site, ignorando o CSV local.
+        force (bool, optional): Se True, força o scraping do site, ignorando o db local.
 
     Returns:
         pd.DataFrame: DataFrame contendo os dados de comercialização.
@@ -68,7 +68,7 @@ def get_importacao_data(
     Args:
         sub_table (str, optional): Nome da sub-tabela para filtrar os dados.
         year (int, optional): Ano dos dados a serem obtidos.
-        force (bool, optional): Se True, força o scraping do site, ignorando o CSV local.
+        force (bool, optional): Se True, força o scraping do site, ignorando o db local.
 
     Returns:
         pd.DataFrame: DataFrame contendo os dados de importação.
@@ -89,7 +89,7 @@ def get_exportacao_data(
     Args:
         sub_table (str, optional): Nome da sub-tabela para filtrar os dados.
         year (int, optional): Ano dos dados a serem obtidos.
-        force (bool, optional): Se True, força o scraping do site, ignorando o CSV local.
+        force (bool, optional): Se True, força o scraping do site, ignorando o db local.
 
     Returns:
         pd.DataFrame: DataFrame contendo os dados de exportação.

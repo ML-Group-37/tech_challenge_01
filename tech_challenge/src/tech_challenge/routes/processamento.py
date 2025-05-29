@@ -18,7 +18,7 @@ security = HTTPBearer()
     response_model=List[ProcessamentoSchema],
     summary="Dados de processamento",
     description="Retorna os dados da aba Processamento da Embrapa. "
-    "Utiliza fallback para CSV local em caso de falha.",
+    "Utiliza fallback para db local em caso de falha.",
     tags=["Dados"],
 )
 def get_processamento(

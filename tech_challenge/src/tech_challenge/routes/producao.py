@@ -17,7 +17,7 @@ security = HTTPBearer()
     response_model=List[ProducaoSchema],
     summary="Dados de produção",
     description="Retorna os dados da aba Produção da Embrapa. "
-    "Utiliza fallback para CSV local em caso de falha.",
+    "Utiliza fallback para db local em caso de falha.",
     tags=["Dados"],
 )
 def get_producao(year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):

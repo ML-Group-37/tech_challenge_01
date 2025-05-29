@@ -17,7 +17,7 @@ security = HTTPBearer()
     response_model=List[ComercializacaoSchema],
     summary="Dados de comercialização",
     description="Retorna os dados da aba Comercialização da Embrapa. "
-    "Utiliza fallback para CSV local em caso de falha.",
+    "Utiliza fallback para db local em caso de falha.",
     tags=["Dados"],
 )
 def get_comercializacao(year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):

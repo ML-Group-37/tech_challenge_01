@@ -18,7 +18,7 @@ security = HTTPBearer()
     response_model=List[ImportacaoSchema],
     summary="Dados de importação",
     description="Retorna os dados da aba Importação da Embrapa. "
-    "Utiliza fallback para CSV local em caso de falha.",
+    "Utiliza fallback para db local em caso de falha.",
     tags=["Dados"],
 )
 def get_importacao(sub_table: Optional[ImportacaoSubTables], year: Optional[int] = None, credentials: HTTPAuthorizationCredentials = Depends(security)):
