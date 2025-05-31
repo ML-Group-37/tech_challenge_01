@@ -1,4 +1,15 @@
-# Tech Challenge 01
+![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker&logoColor=white)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/fastapi-0.100%2B-009688?logo=fastapi&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/uvicorn-ASGI-0e7c86?logo=uvicorn&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-db-003B57?logo=sqlite&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-container-2496ED?logo=docker&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/cloudflare-zero%20trust-F38020?logo=cloudflare&logoColor=white)
+![Pytest](https://img.shields.io/badge/pytest-testing-0A9EDC?logo=pytest&logoColor=white)
+![Swagger](https://img.shields.io/badge/swagger-docs-85EA2D?logo=swagger&logoColor=white)
+![BeautifulSoup](https://img.shields.io/badge/beautifulsoup-scraping-4B4B77?logo=python&logoColor=white)
+
+# Tech Challenge 01 
 
 ## 📊 API Vitivinicultura Embrapa
 
@@ -204,6 +215,20 @@ Abra **dois terminais**:
 - Para realizar um novo deploy, basta rodar a action [Docker Image CI](/.github/workflows/upload-docker-image.yml).
 - A API atualizada estará disponível no subdomínio:  
   🔗 https://tc01.rteixeira.org/
+
+---
+
+## 🛠️ Stack utilizada
+
+- **Linguagem:** Python 3.11+
+- **Framework web:** FastAPI
+- **Servidor ASGI:** Uvicorn
+- **Gerenciamento de dependências:** pip + requirements.txt
+- **Ambiente isolado:** venv
+- **Containerização:** Docker
+- **Proxy reverso e segurança:** Cloudflare Zero Trust
+- **Testes:** pytest
+- **Documentação:** OpenAPI/Swagger (gerada automaticamente pelo FastAPI)  
 
 ## 👥 Autores
 
