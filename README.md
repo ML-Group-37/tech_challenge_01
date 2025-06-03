@@ -1,3 +1,5 @@
+[![Vídeo Explicativo no YouTube](https://img.shields.io/badge/YouTube-Assistir-FF0000?logo=youtube&logoColor=white)](https://youtu.be/dli50wCDfdA)
+
 ![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/fastapi-0.100%2B-009688?logo=fastapi&logoColor=white)
@@ -243,3 +245,5 @@ Projeto desenvolvido por alunos da Pós Tech em Machine Learning Engineering (FI
 ## 📄 Licença
 
 Este projeto foi desenvolvido exclusivamente para fins educacionais no Tech Challenge da FIAP.
+
+
