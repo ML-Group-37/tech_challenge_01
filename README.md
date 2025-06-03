@@ -102,6 +102,8 @@ tech_challenge_01/
 - **`tests/`**: Local para adicionar testes unitários e de integração com `pytest`.
 - **`requirements.txt`**: Lista com as dependências do projeto (FastAPI, JWT, BS4, etc).
 
+![DiagramaArquitetura](https://github.com/user-attachments/assets/e39ab8ce-2386-40f8-b3f6-d9cf981e3686)
+
 ## 📖 Documentação da API
 
 A documentação da API é gerada automaticamente com Swagger e está disponível em [http://localhost:8000/docs](http://localhost:8000/docs).
